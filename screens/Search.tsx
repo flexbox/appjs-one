@@ -18,11 +18,9 @@ import { RootStackParamList } from '../types';
 import AppIconImage from '../assets/images/icon-1.png';
 import { AboutIcon, CancelIcon, CheckIcon, XIcon } from '../components/Icons';
 
-function capitalizeFirstLetter(input: string) {
-  return input.charAt(0).toUpperCase() + input.slice(1);
-}
-
-function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
+export default function Search(
+  props: StackScreenProps<RootStackParamList, 'Search'>
+) {
   const insets = useSafeAreaInsets();
   const textColor = useThemeColor('text');
   const textSecondaryColor = useThemeColor('textSecondary');
@@ -31,6 +29,10 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
   const [result, setResult] = React.useState<
     { isValid: boolean; definition?: string; id?: number } | undefined
   >(undefined);
+
+  function capitalizeFirstLetter(input: string) {
+    return input.charAt(0).toUpperCase() + input.slice(1);
+  }
 
   async function handleSubmit() {
     setResult(undefined);
@@ -202,7 +204,6 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
     </View>
   );
 }
-export default Search;
 
 const styles = StyleSheet.create({
   header: {
