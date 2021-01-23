@@ -1,19 +1,18 @@
 import React from 'react';
 import {
-  View,
   StyleSheet,
-  Text,
   TextInput,
   ScrollView,
   ActivityIndicator,
   TouchableOpacity,
   Image,
+  View as RNView,
 } from 'react-native';
+import { View, Text } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
-
-import * as Linking from 'expo-linking';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import { useThemeColor } from '../components/Themed';
 import { type } from '../constants/Type';
 import { RootStackParamList } from '../types';
 import AppIconImage from '../assets/images/icon-1.png';
@@ -24,14 +23,14 @@ function capitalizeFirstLetter(input: string) {
 }
 
 function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
-  console.log(props);
   const insets = useSafeAreaInsets();
+  const textColor = useThemeColor('text');
+  const textSecondaryColor = useThemeColor('textSecondary');
   const [searchValue, onChangeText] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [result, setResult] = React.useState<
     { isValid: boolean; definition?: string; id?: number } | undefined
   >(undefined);
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
 
   async function handleSubmit() {
     setResult(undefined);
@@ -85,6 +84,7 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
               shadowRadius: 2,
               shadowOffset: { height: 1, width: 0 },
               shadowOpacity: 0.25,
+              backgroundColor: 'transparent',
             }}
           >
             <View
@@ -112,7 +112,14 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
       </View>
       <View style={styles.displayHorizontal}>
         <TextInput
-          style={styles.searchInput}
+          style={[
+            styles.searchInput,
+            {
+              color: textColor,
+              borderColor: textSecondaryColor,
+            },
+          ]}
+          placeholderTextColor={textSecondaryColor}
           autoCorrect={false}
           onSubmitEditing={() => handleSubmit()}
           onChangeText={(text) => {
@@ -143,7 +150,10 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {loading && <ActivityIndicator />}
         {!loading && result && (
-          <View style={[styles.displayHorizontal, styles.validationContainer]}>
+          <View
+            style={[styles.displayHorizontal, styles.validationContainer]}
+            colorKey='backgroundSecondary'
+          >
             {result.isValid ? <CheckIcon /> : <XIcon />}
             <Text style={styles.validationText}>
               {capitalizeFirstLetter(searchValue)} is{' '}
@@ -159,7 +169,7 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
                 textAlign: 'center',
                 marginHorizontal: 60,
                 marginTop: 60,
-                opacity: 0.5,
+                color: textSecondaryColor,
               },
             ]}
           >
@@ -168,19 +178,23 @@ function Search(props: StackScreenProps<RootStackParamList, 'Search'>) {
         )}
         {!loading && result && result.isValid && result.definition && (
           <View>
-            <View key={result.id} style={styles.definitionContainer}>
-              <View>
+            <View
+              key={result.id}
+              style={styles.definitionContainer}
+              colorKey='backgroundSecondary'
+            >
+              <RNView>
                 <Text style={type.titleTwo}>
                   {capitalizeFirstLetter(searchValue)}
                 </Text>
-              </View>
-              <View style={styles.def}>
+              </RNView>
+              <RNView style={styles.def}>
                 <Text style={type.body}>
                   {capitalizeFirstLetter(
                     result.definition.split('[')[0].split(', also')[0]
                   )}
                 </Text>
-              </View>
+              </RNView>
             </View>
           </View>
         )}
@@ -206,7 +220,6 @@ const styles = StyleSheet.create({
     height: 40,
     fontSize: 28,
     lineHeight: 28,
-    borderColor: '#000',
     borderBottomWidth: 1,
     flex: 1,
   },
@@ -227,13 +240,11 @@ const styles = StyleSheet.create({
     marginTop: 32,
   },
   validationContainer: {
-    backgroundColor: '#f6f5fa',
     padding: 16,
     borderRadius: 4,
     marginBottom: 16,
   },
   definitionContainer: {
-    backgroundColor: '#f6f5fa',
     padding: 16,
     borderRadius: 4,
   },
