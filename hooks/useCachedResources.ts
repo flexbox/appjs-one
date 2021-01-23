@@ -3,6 +3,11 @@ import * as Font from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import * as React from 'react';
 
+import Bold from '../assets/fonts/sentinel-bold.otf';
+import SemiBold from '../assets/fonts/sentinel-semibold.otf';
+import Italic from '../assets/fonts/sentinel-bookItalic.otf';
+import Regular from '../assets/fonts/sentinel-book.otf';
+
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
@@ -14,8 +19,10 @@ export default function useCachedResources() {
 
         // Load fonts
         await Font.loadAsync({
-          ...Ionicons.font,
-          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          Bold,
+          SemiBold,
+          Italic,
+          Regular,
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service
