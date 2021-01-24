@@ -8,14 +8,16 @@ import {
   Image,
   View as RNView,
 } from 'react-native';
-import { View, Text } from '../components/Themed';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+import useColorScheme from '../hooks/useColorScheme';
+import { View, Text } from '../components/Themed';
 import { useThemeColor } from '../components/Themed';
 import { type } from '../constants/Type';
 import { RootStackParamList } from '../types';
 import AppIconImage from '../assets/images/icon-1.png';
+import DarkAppIconImage from '../assets/images/icon-dark.png';
 import {
   SettingsIcon,
   CancelIcon,
@@ -27,6 +29,8 @@ export default function Search(
   props: StackScreenProps<RootStackParamList, 'Search'>
 ) {
   const insets = useSafeAreaInsets();
+  const colorScheme = useColorScheme();
+  const isDark = colorScheme === 'dark';
   const textColor = useThemeColor('text');
   const textSecondaryColor = useThemeColor('textSecondary');
   const [searchValue, onChangeText] = React.useState('');
@@ -103,7 +107,10 @@ export default function Search(
                 width: 40,
               }}
             >
-              <Image source={AppIconImage} style={{ width: 40, height: 40 }} />
+              <Image
+                source={isDark ? DarkAppIconImage : AppIconImage}
+                style={{ width: 40, height: 40 }}
+              />
             </RNView>
           </RNView>
           <RNView>
@@ -205,7 +212,8 @@ export default function Search(
                 <Text style={type.body}>
                   {capitalizeFirstLetter(
                     result.definition.split('[')[0].split(', also')[0]
-                  )}
+                  ).trim()}
+                  .
                 </Text>
               </RNView>
             </View>
