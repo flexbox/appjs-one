@@ -31,6 +31,20 @@ export function CheckIcon() {
   );
 }
 
+export function BlueCheckIcon() {
+  const fill = useThemeColor('primary');
+  return (
+    <Svg width={25} height={25} viewBox='0 0 25 25' fill='none'>
+      <Path
+        fillRule='evenodd'
+        clipRule='evenodd'
+        d='M12.947 24.507c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12-6.628 0-12 5.372-12 12 0 6.627 5.372 12 12 12zm-6.172-11.17c1.858-.906 3.155 2.26 3.884 4.65.304.996 1.185 1.034 1.612.085 1.123-2.501 3.388-6.748 7.433-11.473.364-.425-.055-.956-.51-.632-4.475 3.176-7.51 8.347-7.51 8.347-2.854-4.745-4.909-2.11-4.909-.977z'
+        fill={fill}
+      />
+    </Svg>
+  );
+}
+
 export function CancelIcon() {
   const backgroundButtonColor = useThemeColor('backgroundButton');
   const foregroundColor = useThemeColor('text');

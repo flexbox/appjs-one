@@ -1,7 +1,16 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import * as React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import {
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  View as RNView,
+} from 'react-native';
+import * as Linking from 'expo-linking';
 
+import { View, Text } from '../components/Themed';
+import { type } from '../constants/Type';
+import { BlueCheckIcon } from '../components/Icons';
 import { RootStackParamList } from '../types';
 
 export default function Settings({
@@ -9,57 +18,92 @@ export default function Settings({
 }: StackScreenProps<RootStackParamList, 'Settings'>) {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Settings</Text>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.link}>
-        <Text style={styles.linkText}>Go to home screen!</Text>
-      </TouchableOpacity>
-      {/* <Modal
-        isVisible={isModalVisible}
-        onBackdropPress={() => setIsModalVisible(false)}
+      <View
+        colorKey='backgroundSecondary'
+        style={{
+          padding: 16,
+          flexDirection: 'row',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}
       >
-        <View
-          style={{
-            backgroundColor: 'white',
-            borderRadius: 8,
-            padding: 20,
-            bottom: insets.bottom,
+        <Text style={type.titleTwo}>Settings</Text>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={type.title}>Done</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={{ padding: 16 }}>
+        <TouchableOpacity
+          onPress={() => console.log('NWL2018')}
+          style={{ marginBottom: 16 }}
+        >
+          <View
+            colorKey='backgroundSecondary'
+            style={{
+              padding: 16,
+              borderRadius: 8,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <RNView style={{ flex: 1 }}>
+              <Text style={[type.title, { marginBottom: 4 }]}>NWL2018</Text>
+              <Text style={type.body}>
+                The NASPA Word List 2018 Edition has 192,111 words and is the
+                latest official Scrabble word list for use in the United States,
+                Canada, and Thailand.
+              </Text>
+            </RNView>
+            <RNView>
+              <BlueCheckIcon />
+            </RNView>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => console.log('CSW15')}
+          style={{ marginBottom: 16 }}
+        >
+          <View
+            colorKey='backgroundSecondary'
+            style={{
+              padding: 16,
+              borderRadius: 8,
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}
+          >
+            <RNView style={{ flex: 1 }}>
+              <Text style={[type.title, { marginBottom: 4 }]}>CSW15</Text>
+              <Text style={type.body}>
+                The Collins Scrabble Word List 2015 Edition has 276,663 words
+                and is the latest approved Scrabble word list for use outside of
+                the United States, Canada and Thailand.
+              </Text>
+            </RNView>
+            <RNView>
+              <BlueCheckIcon />
+            </RNView>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <View style={{ padding: 16 }}>
+        <Text style={type.title}>About Word Check</Text>
+        <Text style={[type.body, { marginTop: 8, marginBottom: 16 }]}>
+          Made by Jon Samp in Brooklyn, NY.
+        </Text>
+        <TouchableOpacity
+          onPress={() => {
+            Linking.openURL('https://www.buymeacoffee.com/jonsamp');
           }}
         >
-          <View style={styles.displayHorizontal}>
-            <View style={{ flex: 1 }}>
-              <Text style={type.title}>About Word Check</Text>
-            </View>
-            <TouchableOpacity
-              onPress={() => setIsModalVisible(false)}
-              style={{ top: -4, right: -4 }}
-            >
-              <CancelIcon />
-            </TouchableOpacity>
-          </View>
-          <Text style={[type.body, { marginTop: 12 }]}>
-            Word Check is an app made after playing Scrabble with family over a
-            holiday. Inevitably, someone would play some word that no one knew,
-            so, lacking a physical dictionary, we searched the net. The problem
-            was that all the word checking sites had tons of ads and they also
-            gave hints to similar words. In my book, that's nearly cheating. So,
-            I made this app to give a simple "yes" or "no" answer as to whether
-            a word is playable.
-          </Text>
-          <Text style={[type.body, { marginTop: 12 }]}>
-            Created with ☕️ by Jon Samp in Brooklyn, New York. Find me on
-            Twitter:{' '}
-            <Text
-              style={{ fontFamily: 'SemiBold', color: 'blue' }}
-              onPress={() => {
-                Linking.openURL('https://www.twitter.com/jonsamp');
-              }}
-            >
-              @JonSamp
-            </Text>
-            .
-          </Text>
-        </View>
-      </Modal> */}
+          <Image
+            source={{
+              uri: 'https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png',
+            }}
+            style={{ height: 60, width: 217 }}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
@@ -67,21 +111,5 @@ export default function Settings({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    marginTop: 15,
-    paddingVertical: 15,
-  },
-  linkText: {
-    fontSize: 14,
-    color: '#2e78b7',
   },
 });

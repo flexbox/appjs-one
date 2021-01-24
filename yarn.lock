@@ -3677,7 +3677,7 @@ expo-linear-gradient@~8.4.0:
   resolved "https://registry.yarnpkg.com/expo-linear-gradient/-/expo-linear-gradient-8.4.0.tgz#34e6f960b1971c57dacf7211c747ba490a76bf63"
   integrity sha512-f9JOXaIl0MR8RBYRIud5UAsEi52oz81XhQs73VUpujemHjOyHmrZa6dqwf399YOwI/WBwbpcINcUIw/mCYE1mA==
 
-expo-linking@~2.0.0, expo-linking@~2.0.1:
+expo-linking@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/expo-linking/-/expo-linking-2.0.1.tgz#0ac0298039b0f7f6c109d7efbbb661efc1c56760"
   integrity sha512-S+Bb5u1rlld6ZICKOQ4B/htHiIbtd9eJMpwXoWMcl68V+UNNxJisB5lUZePXWSoHlb0QbQfVOAf48u2WD588lQ==

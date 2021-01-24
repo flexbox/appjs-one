@@ -7,6 +7,8 @@ export default {
     backgroundButton: '#eceded',
     success: '#5DA86D',
     danger: '#ed004d',
+    // TODO: fix this color
+    primary: '#1f9df7',
   },
   dark: {
     text: '#dfdfdf',
@@ -16,5 +18,6 @@ export default {
     backgroundButton: '#38393e',
     success: '#50be5d',
     danger: '#fc0f5a',
+    primary: '#1f9df7',
   },
 };
