@@ -277,6 +277,6 @@ const styles = StyleSheet.create({
     top: 1,
   },
   def: {
-    marginBottom: 16,
+    marginBottom: 4,
   },
 });
