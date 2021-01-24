@@ -5,7 +5,7 @@
     "privacy": "public",
     "owner": "jonsamp",
     "scheme": "wordcheck",
-    "platforms": ["ios"],
+    "platforms": ["ios", "android"],
     "version": "40.1",
     "orientation": "default",
     "userInterfaceStyle": "automatic",
