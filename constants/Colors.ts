@@ -7,8 +7,7 @@ export default {
     backgroundButton: '#eceded',
     success: '#5DA86D',
     danger: '#ed004d',
-    // TODO: fix this color
-    primary: '#1f9df7',
+    primary: '#209cf7',
   },
   dark: {
     text: '#dfdfdf',
