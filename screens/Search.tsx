@@ -16,7 +16,12 @@ import { useThemeColor } from '../components/Themed';
 import { type } from '../constants/Type';
 import { RootStackParamList } from '../types';
 import AppIconImage from '../assets/images/icon-1.png';
-import { AboutIcon, CancelIcon, CheckIcon, XIcon } from '../components/Icons';
+import {
+  SettingsIcon,
+  CancelIcon,
+  CheckIcon,
+  XIcon,
+} from '../components/Icons';
 
 export default function Search(
   props: StackScreenProps<RootStackParamList, 'Search'>
@@ -74,22 +79,21 @@ export default function Search(
         style={[
           styles.displayHorizontal,
           {
-            marginBottom: 8,
+            marginBottom: 16,
             justifyContent: 'space-between',
           },
         ]}
       >
-        <View style={[styles.displayHorizontal, { marginBottom: 8 }]}>
-          <View
+        <View style={styles.displayHorizontal}>
+          <RNView
             style={{
               shadowColor: 'black',
               shadowRadius: 2,
               shadowOffset: { height: 1, width: 0 },
               shadowOpacity: 0.25,
-              backgroundColor: 'transparent',
             }}
           >
-            <View
+            <RNView
               style={{
                 borderRadius: 7,
                 overflow: 'hidden',
@@ -97,19 +101,26 @@ export default function Search(
                 justifyContent: 'center',
                 height: 40,
                 width: 40,
-                top: -9,
               }}
             >
               <Image source={AppIconImage} style={{ width: 40, height: 40 }} />
-            </View>
-          </View>
-          <Text style={styles.header}>Word Check</Text>
+            </RNView>
+          </RNView>
+          <RNView>
+            <Text
+              style={[
+                styles.header,
+                {
+                  top: 8,
+                },
+              ]}
+            >
+              Word Check
+            </Text>
+          </RNView>
         </View>
-        <TouchableOpacity
-          style={{ top: -9 }}
-          onPress={() => props.navigation.push('Settings')}
-        >
-          <AboutIcon />
+        <TouchableOpacity onPress={() => props.navigation.push('Settings')}>
+          <SettingsIcon />
         </TouchableOpacity>
       </View>
       <View style={styles.displayHorizontal}>
@@ -254,7 +265,7 @@ const styles = StyleSheet.create({
   },
   validationText: {
     ...type.body,
-    marginLeft: 8,
+    marginLeft: 12,
     top: 1,
   },
   def: {
