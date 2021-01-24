@@ -80,9 +80,10 @@ export default function Settings({
         </TouchableOpacity>
       </View>
       <View style={{ padding: 16 }}>
+        <Text style={type.title}>Dictionaries</Text>
         <TouchableOpacity
           onPress={() => setDictionary('NWL2018')}
-          style={{ marginBottom: 16 }}
+          style={{ marginBottom: 16, marginTop: 16 }}
         >
           <View
             colorKey='backgroundSecondary'
@@ -94,16 +95,18 @@ export default function Settings({
             }}
           >
             <RNView style={{ flex: 1 }}>
-              <Text style={[type.title, { marginBottom: 4 }]}>NWL2018</Text>
+              <Text style={[type.title, { marginBottom: 4 }]}>
+                NASPA Word List 2018 Edition
+              </Text>
               <Text style={type.body}>
-                The NASPA Word List 2018 Edition has 192,111 words and is the
-                latest official Scrabble word list for use in the United States,
-                Canada, and Thailand.
+                Contains 192,111 words and is the latest official Scrabble word
+                list for use in the United States, Canada, and Thailand.
               </Text>
             </RNView>
             <RNView
               style={{
                 opacity: currentDictionary === 'NWL2018' ? 1 : 0,
+                marginLeft: 16,
               }}
             >
               <BlueCheckIcon />
@@ -124,16 +127,18 @@ export default function Settings({
             }}
           >
             <RNView style={{ flex: 1 }}>
-              <Text style={[type.title, { marginBottom: 4 }]}>CSW15</Text>
+              <Text style={[type.title, { marginBottom: 4 }]}>
+                Collins Scrabble Word List 2015 Edition
+              </Text>
               <Text style={type.body}>
-                The Collins Scrabble Word List 2015 Edition has 276,663 words
-                and is the latest approved Scrabble word list for use outside of
-                the United States, Canada and Thailand.
+                Contains 276,663 words and is the latest approved Scrabble word
+                list for use outside of the United States, Canada, and Thailand.
               </Text>
             </RNView>
             <RNView
               style={{
                 opacity: currentDictionary === 'CSW15' ? 1 : 0,
+                marginLeft: 16,
               }}
             >
               <BlueCheckIcon />
@@ -141,7 +146,7 @@ export default function Settings({
           </View>
         </TouchableOpacity>
       </View>
-      <View style={{ padding: 16 }}>
+      {/* <View style={{ padding: 16 }}>
         <Text style={type.title}>About Word Check</Text>
         <Text style={[type.body, { marginTop: 8, marginBottom: 16 }]}>
           Made by Jon Samp in Brooklyn, NY.
@@ -158,7 +163,7 @@ export default function Settings({
             style={{ height: 50, width: 180 }}
           />
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 }

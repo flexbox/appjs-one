@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "word-check-2",
-    "slug": "word-check-2",
-    "version": "1.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "name": "Word Check",
+    "slug": "words",
+    "privacy": "public",
+    "owner": "jonsamp",
+    "platforms": ["ios"],
+    "version": "40.1",
+    "orientation": "default",
+    "icon": "./assets/images/icon-1.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
@@ -15,20 +16,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
-    "web": {
-      "favicon": "./assets/images/favicon.png"
+      "bundleIdentifier": "jonsamp.words",
+      "supportsTablet": true,
+      "buildNumber": "1"
     }
   }
 }
