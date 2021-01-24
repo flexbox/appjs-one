@@ -1,26 +1,38 @@
 {
   "expo": {
     "name": "Word Check",
-    "slug": "words",
+    "slug": "word-check",
     "privacy": "public",
     "owner": "jonsamp",
+    "scheme": "wordcheck",
     "platforms": ["ios"],
     "version": "40.1",
     "orientation": "default",
+    "userInterfaceStyle": "automatic",
     "icon": "./assets/images/icon-1.png",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#151617"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "buildNumber": "1",
       "bundleIdentifier": "jonsamp.words",
-      "supportsTablet": true,
-      "buildNumber": "1"
+      "supportsTablet": true
+    },
+    "android": {
+      "versionCode": 1,
+      "package": "com.jonsamp.wordcheck",
+      "permissions": [],
+      "icon": "./assets/images/icon-1.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/adaptive-foreground.png",
+        "backgroundImage": "./assets/images/adaptive-background.png"
+      }
     }
   }
 }

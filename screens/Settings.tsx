@@ -1,9 +1,11 @@
 import { StackScreenProps } from '@react-navigation/stack';
 import React, { useState, useEffect } from 'react';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import {
   Image,
   StyleSheet,
   TouchableOpacity,
+  Platform,
   View as RNView,
 } from 'react-native';
 import * as Linking from 'expo-linking';
@@ -17,6 +19,7 @@ import { RootStackParamList } from '../types';
 export default function Settings({
   navigation,
 }: StackScreenProps<RootStackParamList, 'Settings'>) {
+  const insets = useSafeAreaInsets();
   const [currentDictionary, setCurrentDictionary] = useState<
     'NWL2018' | 'CSW15' | undefined
   >();
@@ -54,7 +57,14 @@ export default function Settings({
   }
 
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          paddingTop: Platform.select({ ios: 0, android: insets.top }),
+        },
+      ]}
+    >
       <View
         colorKey='backgroundSecondary'
         style={{

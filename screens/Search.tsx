@@ -172,7 +172,7 @@ export default function Search(
         )}
       </View>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {loading && <ActivityIndicator />}
+        {loading && <ActivityIndicator color={textSecondaryColor} size={24} />}
         {!loading && result && (
           <View
             style={[styles.displayHorizontal, styles.validationContainer]}

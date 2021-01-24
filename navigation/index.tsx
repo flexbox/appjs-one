@@ -45,10 +45,7 @@ function RootNavigator() {
             ios: 'modal',
             android: 'push',
           }),
-          headerShown: Platform.select({
-            ios: false,
-            android: true,
-          }),
+          headerShown: false,
           title: 'Settings',
         }}
       />
