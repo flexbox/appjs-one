@@ -1,5 +1,5 @@
 import { StackScreenProps } from '@react-navigation/stack';
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Image,
   StyleSheet,
@@ -7,15 +7,52 @@ import {
   View as RNView,
 } from 'react-native';
 import * as Linking from 'expo-linking';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { View, Text } from '../components/Themed';
 import { type } from '../constants/Type';
-import { BlueCheckIcon } from '../components/Icons';
+import { BlueCheckIcon, SettingsCogIcon } from '../components/Icons';
 import { RootStackParamList } from '../types';
 
 export default function Settings({
   navigation,
 }: StackScreenProps<RootStackParamList, 'Settings'>) {
+  const [currentDictionary, setCurrentDictionary] = useState<
+    'NWL2018' | 'CSW15' | undefined
+  >();
+
+  useEffect(function didMount() {
+    async function getDictionary() {
+      const result = await AsyncStorage.getItem('@wordcheck:dictionary');
+
+      if (result === 'NWL2018') {
+        setCurrentDictionary('NWL2018');
+      } else if (result === 'CSW15') {
+        setCurrentDictionary('CSW15');
+      } else {
+        setCurrentDictionary('NWL2018');
+      }
+    }
+
+    getDictionary();
+  }, []);
+
+  async function setDictionary(key: string) {
+    try {
+      await AsyncStorage.setItem('@wordcheck:dictionary', key);
+
+      if (key === 'NWL2018') {
+        setCurrentDictionary('NWL2018');
+      } else if (key === 'CSW15') {
+        setCurrentDictionary('CSW15');
+      } else {
+        setCurrentDictionary('NWL2018');
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
   return (
     <View style={styles.container}>
       <View
@@ -27,14 +64,24 @@ export default function Settings({
           justifyContent: 'space-between',
         }}
       >
-        <Text style={type.titleTwo}>Settings</Text>
+        <RNView
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+          }}
+        >
+          <RNView style={{ top: -1 }}>
+            <SettingsCogIcon />
+          </RNView>
+          <Text style={[type.titleTwo, { marginLeft: 4 }]}>Settings</Text>
+        </RNView>
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Text style={type.title}>Done</Text>
         </TouchableOpacity>
       </View>
       <View style={{ padding: 16 }}>
         <TouchableOpacity
-          onPress={() => console.log('NWL2018')}
+          onPress={() => setDictionary('NWL2018')}
           style={{ marginBottom: 16 }}
         >
           <View
@@ -54,13 +101,17 @@ export default function Settings({
                 Canada, and Thailand.
               </Text>
             </RNView>
-            <RNView>
+            <RNView
+              style={{
+                opacity: currentDictionary === 'NWL2018' ? 1 : 0,
+              }}
+            >
               <BlueCheckIcon />
             </RNView>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
-          onPress={() => console.log('CSW15')}
+          onPress={() => setDictionary('CSW15')}
           style={{ marginBottom: 16 }}
         >
           <View
@@ -80,7 +131,11 @@ export default function Settings({
                 the United States, Canada and Thailand.
               </Text>
             </RNView>
-            <RNView>
+            <RNView
+              style={{
+                opacity: currentDictionary === 'CSW15' ? 1 : 0,
+              }}
+            >
               <BlueCheckIcon />
             </RNView>
           </View>
@@ -100,7 +155,7 @@ export default function Settings({
             source={{
               uri: 'https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png',
             }}
-            style={{ height: 60, width: 217 }}
+            style={{ height: 50, width: 180 }}
           />
         </TouchableOpacity>
       </View>

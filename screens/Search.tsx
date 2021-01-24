@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { StackScreenProps } from '@react-navigation/stack';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import useColorScheme from '../hooks/useColorScheme';
 import { View, Text } from '../components/Themed';
@@ -48,8 +49,11 @@ export default function Search(
     setLoading(true);
 
     try {
+      const dictionary = await AsyncStorage.getItem('@wordcheck:dictionary');
       const response = await fetch(
-        `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/otcwl2018/${searchValue.toLowerCase()}.json`
+        `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/${
+          dictionary === 'CSW15' ? 'csw2015' : 'otcwl2018'
+        }/${searchValue.toLowerCase()}.json`
       );
       const json = await response.json();
 
@@ -261,12 +265,12 @@ const styles = StyleSheet.create({
   },
   validationContainer: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 8,
     marginBottom: 16,
   },
   definitionContainer: {
     padding: 16,
-    borderRadius: 4,
+    borderRadius: 8,
   },
   wordSeparator: {
     marginHorizontal: 8,
