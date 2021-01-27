@@ -6,7 +6,7 @@
     "owner": "jonsamp",
     "scheme": "wordcheck",
     "platforms": ["ios", "android"],
-    "version": "40.1",
+    "version": "40.2",
     "orientation": "default",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/images/icon-1.png",
