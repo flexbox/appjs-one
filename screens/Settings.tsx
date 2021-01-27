@@ -156,7 +156,7 @@ export default function Settings({
           </View>
         </TouchableOpacity>
       </View>
-      {/* <View style={{ padding: 16 }}>
+      <View style={{ padding: 16 }}>
         <Text style={type.title}>About Word Check</Text>
         <Text style={[type.body, { marginTop: 8, marginBottom: 16 }]}>
           Made by Jon Samp in Brooklyn, NY.
@@ -173,7 +173,7 @@ export default function Settings({
             style={{ height: 50, width: 180 }}
           />
         </TouchableOpacity>
-      </View> */}
+      </View>
     </View>
   );
 }
