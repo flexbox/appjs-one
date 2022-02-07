@@ -53,7 +53,7 @@ export default function Search(
     try {
       const dictionary = await AsyncStorage.getItem('@wordcheck:dictionary');
 
-      if (dictionary === 'NWL2020') {
+      if (dictionary === 'NWL2020' || !dictionary) {
         const result = await lookUpWordAsync(Dictionary.NWL2020, searchValue);
 
         return setResult({
@@ -86,6 +86,7 @@ export default function Search(
         id: json.index,
       });
     } catch (error) {
+      alert(JSON.stringify(error));
       setResult({
         isValid: false,
         definition: undefined,

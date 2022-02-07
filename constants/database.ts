@@ -2,8 +2,8 @@ import { Asset } from 'expo-asset';
 import * as FileSystem from 'expo-file-system';
 import * as SQLite from 'expo-sqlite';
 
-import CSW21 from './databases/CSW21.db';
-import NWL2020 from './databases/NWL2020.db';
+import CSW21 from '../assets/databases/CSW21.db';
+import NWL2020 from '../assets/databases/NWL2020.db';
 
 export enum Dictionary {
   NWL2020 = 'NWL2020',
