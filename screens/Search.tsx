@@ -25,6 +25,7 @@ import {
   CheckIcon,
   XIcon,
 } from '../components/Icons';
+import { Dictionary, lookUpWordAsync } from '../constants/database';
 
 export default function Search(
   props: StackScreenProps<RootStackParamList, 'Search'>
@@ -37,7 +38,8 @@ export default function Search(
   const [searchValue, onChangeText] = React.useState('');
   const [loading, setLoading] = React.useState(false);
   const [result, setResult] = React.useState<
-    { isValid: boolean; definition?: string; id?: number } | undefined
+    | { isValid: boolean; definition?: string | null; id?: number | string }
+    | undefined
   >(undefined);
 
   function capitalizeFirstLetter(input: string) {
@@ -50,6 +52,27 @@ export default function Search(
 
     try {
       const dictionary = await AsyncStorage.getItem('@wordcheck:dictionary');
+
+      if (dictionary === 'NWL2020') {
+        const result = await lookUpWordAsync(Dictionary.NWL2020, searchValue);
+
+        return setResult({
+          isValid: true,
+          definition: result.definition,
+          id: result.word,
+        });
+      }
+
+      if (dictionary === 'CSW21') {
+        const result = await lookUpWordAsync(Dictionary.CSW21, searchValue);
+
+        return setResult({
+          isValid: true,
+          definition: result.definition,
+          id: result.word,
+        });
+      }
+
       const response = await fetch(
         `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/${
           dictionary === 'CSW15' ? 'csw2015' : 'otcwl2018'
@@ -68,9 +91,9 @@ export default function Search(
         definition: undefined,
         id: undefined,
       });
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   }
 
   return (
