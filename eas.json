@@ -1,14 +1,21 @@
 {
-  "builds": {
-    "android": {
-      "release": {
-        "workflow": "managed"
-      }
+  "cli": {
+    "version": ">= 0.46.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
     },
-    "ios": {
-      "release": {
-        "workflow": "managed"
-      }
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview"
+    },
+    "production": {
+      "channel": "production"
     }
+  },
+  "submit": {
+    "production": {}
   }
 }
