@@ -86,7 +86,6 @@ export default function Search(
         id: json.index,
       });
     } catch (error) {
-      alert(JSON.stringify(error));
       setResult({
         isValid: false,
         definition: undefined,
