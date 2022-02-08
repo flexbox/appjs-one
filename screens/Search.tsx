@@ -56,35 +56,62 @@ export default function Search(
       if (dictionary === 'NWL2020' || !dictionary) {
         const result = await lookUpWordAsync(Dictionary.NWL2020, searchValue);
 
+        if (result === null) {
+          return setResult({
+            isValid: false,
+            definition: undefined,
+            id: undefined,
+          });
+        }
+
         return setResult({
           isValid: true,
           definition: result.definition,
           id: result.word,
         });
-      }
-
-      if (dictionary === 'CSW21') {
+      } else if (dictionary === 'CSW21') {
         const result = await lookUpWordAsync(Dictionary.CSW21, searchValue);
 
+        if (result === null) {
+          return setResult({
+            isValid: false,
+            definition: undefined,
+            id: undefined,
+          });
+        }
+
         return setResult({
           isValid: true,
           definition: result.definition,
           id: result.word,
         });
+      } else if (dictionary === 'CSW15') {
+        const response = await fetch(
+          `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/csw2015/${searchValue.toLowerCase()}.json`
+        );
+
+        const json = await response.json();
+
+        setResult({
+          isValid: true,
+          definition: json.definition,
+          id: json.index,
+        });
+      } else if (dictionary === 'NWL2018') {
+        const response = await fetch(
+          `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/otcwl2018/${searchValue.toLowerCase()}.json`
+        );
+
+        const json = await response.json();
+
+        setResult({
+          isValid: true,
+          definition: json.definition,
+          id: json.index,
+        });
+      } else {
+        alert('No dictionary selected. Please select one in settings.');
       }
-
-      const response = await fetch(
-        `https://s3-us-west-2.amazonaws.com/words.alexmeub.com/${
-          dictionary === 'CSW15' ? 'csw2015' : 'otcwl2018'
-        }/${searchValue.toLowerCase()}.json`
-      );
-      const json = await response.json();
-
-      setResult({
-        isValid: true,
-        definition: json.definition,
-        id: json.index,
-      });
     } catch (error) {
       setResult({
         isValid: false,

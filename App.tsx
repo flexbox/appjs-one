@@ -14,6 +14,7 @@ import Regular from './assets/fonts/sentinel-book.otf';
 
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import { Dictionary, loadDictionaryAsync } from './constants/database';
 
 enableScreens();
 
@@ -39,12 +40,17 @@ export default function App() {
     try {
       SplashScreen.preventAutoHideAsync();
 
-      await Font.loadAsync({
-        Bold,
-        SemiBold,
-        Italic,
-        Regular,
-      });
+      await loadDictionaryAsync(Dictionary.NWL2020);
+      await loadDictionaryAsync(Dictionary.CSW21);
+
+      await Promise.all([
+        Font.loadAsync({
+          Bold,
+          SemiBold,
+          Italic,
+          Regular,
+        }),
+      ]);
     } catch (e) {
       console.warn(e);
     } finally {
