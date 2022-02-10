@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   StyleSheet,
   TextInput,
@@ -41,6 +41,41 @@ export default function Search(
     | { isValid: boolean; definition?: string | null; id?: number | string }
     | undefined
   >(undefined);
+
+  useEffect(
+    function resultDidUpdate() {
+      async function setDefinitionAsync() {
+        try {
+          const rawData = await fetch(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${searchValue}`
+          );
+          const data = await rawData.json();
+          const definition =
+            data?.[0]?.meanings?.[0]?.definitions?.[0]?.definition;
+
+          if (result?.isValid && definition && typeof definition === 'string') {
+            setResult({
+              ...result,
+              definition: definition.replace(/\.$/, ''),
+            });
+          }
+        } catch (error) {
+          console.log(error);
+          if (result?.isValid) {
+            setResult({
+              ...result,
+              definition: 'No definition available',
+            });
+          }
+        }
+      }
+
+      if (result?.isValid && !result?.definition) {
+        setDefinitionAsync();
+      }
+    },
+    [result]
+  );
 
   function capitalizeFirstLetter(input: string) {
     return input.charAt(0).toUpperCase() + input.slice(1);
