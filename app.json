@@ -4,11 +4,8 @@
     "slug": "word-check",
     "privacy": "public",
     "scheme": "wordcheck",
-    "platforms": [
-      "ios",
-      "android"
-    ],
-    "version": "44.0",
+    "platforms": ["ios", "android"],
+    "version": "45.0",
     "orientation": "default",
     "userInterfaceStyle": "automatic",
     "icon": "./assets/images/icon-1.png",
@@ -18,19 +15,17 @@
       "backgroundColor": "#151617"
     },
     "updates": {
-      "fallbackToCacheTimeout": 5000,
+      "fallbackToCacheTimeout": 3000,
       "url": "https://u.expo.dev/831487d1-1440-4052-9ae1-d94692cd9d9b"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "buildNumber": "1",
       "bundleIdentifier": "jonsamp.words",
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "package": "com.jonsamp.wordcheck",
       "permissions": [],
       "icon": "./assets/images/icon-1.png",
