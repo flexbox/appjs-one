@@ -3,9 +3,11 @@
     "name": "Word Check",
     "slug": "word-check",
     "privacy": "public",
-    "owner": "jonsamp",
     "scheme": "wordcheck",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "44.0",
     "orientation": "default",
     "userInterfaceStyle": "automatic",
@@ -17,9 +19,11 @@
     },
     "updates": {
       "fallbackToCacheTimeout": 5000,
-      "url": "https://u.expo.dev/dd591e49-d2d1-4ce0-bef9-49746a819ec0"
+      "url": "https://u.expo.dev/831487d1-1440-4052-9ae1-d94692cd9d9b"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "buildNumber": "1",
       "bundleIdentifier": "jonsamp.words",
