@@ -1,9 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, useCallback } from 'react';
 import { Animated } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { enableScreens } from 'react-native-screens';
-import AppLoading from 'expo-app-loading';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 
@@ -19,61 +18,65 @@ import { Dictionary, loadDictionaryAsync } from './constants/database';
 enableScreens();
 
 export default function App() {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [appIsReady, setAppIsReady] = useState(false);
   const colorScheme = useColorScheme();
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
-  useEffect(
-    function onLoadedUpdate() {
-      if (isLoadingComplete) {
-        Animated.timing(fadeAnim, {
-          toValue: 1,
-          duration: 666,
-          useNativeDriver: true,
-        }).start();
-      }
-    },
-    [isLoadingComplete]
-  );
+  useEffect(() => {
+    async function prepare() {
+      try {
+        // Keep the splash screen visible while we fetch resources
+        await SplashScreen.preventAutoHideAsync();
 
-  async function loadResourcesAndDataAsync() {
-    try {
-      SplashScreen.preventAutoHideAsync();
+        await loadDictionaryAsync(Dictionary.NWL2020);
+        await loadDictionaryAsync(Dictionary.CSW21);
 
-      await loadDictionaryAsync(Dictionary.NWL2020);
-      await loadDictionaryAsync(Dictionary.CSW21);
-
-      await Promise.all([
-        Font.loadAsync({
+        await Font.loadAsync({
           Bold,
           SemiBold,
           Italic,
           Regular,
-        }),
-      ]);
-    } catch (e) {
-      console.warn(e);
-    } finally {
-      return;
+        });
+      } catch (e) {
+        console.warn(e);
+      } finally {
+        // Tell the application to render
+        setAppIsReady(true);
+      }
     }
+
+    prepare();
+  }, []);
+
+  const onLayoutRootView = useCallback(async () => {
+    if (appIsReady) {
+      // This tells the splash screen to hide immediately! If we call this after
+      // `setAppIsReady`, then we may see a blank screen while the app is
+      // loading its initial state and rendering its first pixels. So instead,
+      // we hide the splash screen once we know the root view has already
+      // performed layout.
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 666,
+        useNativeDriver: true,
+      }).start();
+      await SplashScreen.hideAsync();
+    }
+  }, [appIsReady]);
+
+  if (!appIsReady) {
+    return null;
   }
 
-  if (!isLoadingComplete) {
-    return (
-      <AppLoading
-        startAsync={loadResourcesAndDataAsync}
-        onFinish={() => setLoadingComplete(true)}
-        onError={console.warn}
-      />
-    );
-  } else {
-    return (
-      <Animated.View style={{ opacity: fadeAnim, flex: 1 }}>
-        <SafeAreaProvider>
-          <Navigation colorScheme={colorScheme} />
-          <StatusBar />
-        </SafeAreaProvider>
-      </Animated.View>
-    );
-  }
+  return (
+    <Animated.View
+      style={{ opacity: fadeAnim, flex: 1 }}
+      onLayout={onLayoutRootView}
+    >
+      <SafeAreaProvider>
+        <Navigation colorScheme={colorScheme} />
+        <StatusBar />
+      </SafeAreaProvider>
+    </Animated.View>
+  );
 }
