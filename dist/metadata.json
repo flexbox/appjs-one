@@ -1,0 +1,32 @@
+{
+  "version": 0,
+  "bundler": "metro",
+  "fileMetadata": {
+    "android": {
+      "bundle": "bundles/android-f43e04fb749181fa12133b348538d518.js",
+      "assets": [
+        { "path": "assets/52d2cb71b40929e5263bcd113536133a", "ext": "otf" },
+        { "path": "assets/a83d81a7774d0a128047ef2294d66703", "ext": "otf" },
+        { "path": "assets/e554c4737726b7cc5ad5d1a6a3678515", "ext": "otf" },
+        { "path": "assets/12bf326c0f4fea5ff2a6b06f88f08ace", "ext": "otf" },
+        { "path": "assets/b78d6658cc96383f390d1dc87e97ad41", "ext": "png" },
+        { "path": "assets/a37fff46cf15296963d5db5154555d9e", "ext": "png" },
+        { "path": "assets/686d5a85906749c511411ab86aade1cf", "ext": "db" },
+        { "path": "assets/42fcd3b0319dc98a1e291b490b1fa196", "ext": "db" }
+      ]
+    },
+    "ios": {
+      "bundle": "bundles/ios-f2c7f297774fcb59e9ff155b2434cc50.js",
+      "assets": [
+        { "path": "assets/52d2cb71b40929e5263bcd113536133a", "ext": "otf" },
+        { "path": "assets/a83d81a7774d0a128047ef2294d66703", "ext": "otf" },
+        { "path": "assets/e554c4737726b7cc5ad5d1a6a3678515", "ext": "otf" },
+        { "path": "assets/12bf326c0f4fea5ff2a6b06f88f08ace", "ext": "otf" },
+        { "path": "assets/b78d6658cc96383f390d1dc87e97ad41", "ext": "png" },
+        { "path": "assets/a37fff46cf15296963d5db5154555d9e", "ext": "png" },
+        { "path": "assets/686d5a85906749c511411ab86aade1cf", "ext": "db" },
+        { "path": "assets/42fcd3b0319dc98a1e291b490b1fa196", "ext": "db" }
+      ]
+    }
+  }
+}
