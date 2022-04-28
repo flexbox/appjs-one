@@ -20,12 +20,12 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "1",
+      "buildNumber": "2",
       "bundleIdentifier": "jonsamp.words",
       "supportsTablet": true
     },
     "android": {
-      "versionCode": 4,
+      "versionCode": 5,
       "package": "com.jonsamp.wordcheck",
       "permissions": [],
       "icon": "./assets/images/icon-1.png",
