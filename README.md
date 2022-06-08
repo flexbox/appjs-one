@@ -60,3 +60,14 @@ Ship the `ios` build to production
 ```bash
 eas build --profile production --ios
 ```
+
+## Custom plugins
+
+To check the results, from VSCode `command` + `shift` + `P` and
+
+```bash
+Expo: Preview modifier
+ios.infoPlist
+```
+
+![](./infoPlist-preview.gif)
