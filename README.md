@@ -134,3 +134,15 @@ yarn add expo-community-flipper react-native-flipper
 ```bash
 eas build --profile devlopement --platform ios
 ```
+
+## Release to the store
+
+https://docs.expo.dev/submit/ios/
+
+```bash
+eas submit --platform ios
+```
+
+```bash
+eas build --auto-submit
+```
