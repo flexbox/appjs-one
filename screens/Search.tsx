@@ -173,6 +173,7 @@ export default function Search(
         paddingLeft: insets.left + 16,
         paddingTop: insets.top + 8,
         paddingRight: insets.right + 16,
+        backgroundColor: "red",
         flex: 1,
       }}
     >

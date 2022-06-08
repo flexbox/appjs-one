@@ -146,3 +146,34 @@ eas submit --platform ios
 ```bash
 eas build --auto-submit
 ```
+
+## eas update
+
+```bash
+eas update:configure
+```
+
+add a channel
+
+```json
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview"
+    },
+```
+
+### Make an update compatible build
+
+1. Register your device `eas device:create`
+2. `eas build --profile preview`
+
+### Sending updates
+
+```bash
+eas update --branch preview
+```
+
+```bash
+eas channel:view
+eas channel:edit
+```
