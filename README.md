@@ -71,3 +71,54 @@ ios.infoPlist
 ```
 
 ![](./infoPlist-preview.gif)
+
+## Prepare a device to run a build
+
+```bash
+eas device:create
+```
+
+```json
+// app.json
+
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+    },
+  }
+```
+
+```bash
+eas build --profile development --platform all
+```
+
+### Side by side Installation : `app.config.js`
+
+```json
+const IS_DEV = process.enc.APP_VARIANT === "developement"
+
+export default {
+  "name": IS_DEV ? "Word Check (Dev)" : "Word Check",
+  "ios": {
+    "bundleIdentifier": IS_DEV ? "appjsone.words.dev" : "appjsone.words",
+  },
+}
+
+```
+
+### Side by side Installation : `eas.json`
+
+```json
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "env": {
+        "APP_VARIANT": "development"
+      }
+    },
+    "production: {}
+  }
+}
+```
