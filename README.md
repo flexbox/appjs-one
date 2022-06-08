@@ -95,7 +95,7 @@ eas build --profile development --platform all
 
 ### Side by side Installation : `app.config.js`
 
-```json
+```js
 const IS_DEV = process.enc.APP_VARIANT === "developement"
 
 export default {
@@ -118,7 +118,19 @@ export default {
         "APP_VARIANT": "development"
       }
     },
-    "production: {}
+    "production": {}
   }
 }
+```
+
+## Setup flipper
+
+https://github.com/jakobo/expo-community-flipper
+
+```bash
+yarn add expo-community-flipper react-native-flipper
+```
+
+```bash
+eas build --profile devlopement --platform ios
 ```

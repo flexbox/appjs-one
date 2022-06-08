@@ -38,6 +38,9 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "plugins": [["./my-plugin", { "apiKey": "keytoadd" }]]
+    "plugins": [
+      ["./my-plugin", { "apiKey": "super_secret_key_to_add" }],
+      "expo-community-flipper"
+    ]
   }
 }
