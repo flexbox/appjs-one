@@ -1,8 +1,9 @@
-# Word check for SCRABBLE™️
+# appjs-one
 
+> Setting up a professional development process with Expo and EAS Workshop
+
+Using `word-check`app from from https://github.com/jonsamp/word-check
 Check if a word is playable in the game of SCRABBLE™️.
-
-from https://github.com/jonsamp/word-check
 
 ## Get started
 
@@ -177,3 +178,7 @@ eas update --branch preview
 eas channel:view
 eas channel:edit
 ```
+
+## Automation with GitHub Action
+
+https://github.com/expo/expo-preview-action
