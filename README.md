@@ -73,6 +73,8 @@ ios.infoPlist
 
 ![](./infoPlist-preview.gif)
 
+Here is a link with [config-plugins examples](https://github.com/expo/config-plugins)
+
 ## Prepare a device to run a build
 
 ```bash
