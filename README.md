@@ -98,8 +98,10 @@ eas build --profile development --platform all
 
 ### Side by side Installation : `app.config.js`
 
+We want a [development build and production build](https://docs.expo.dev/build-reference/variants/#example-configuring-development-and-production-variants-in) of our managed Expo project.
+
 ```js
-const IS_DEV = process.enc.APP_VARIANT === "developement"
+const IS_DEV = process.env.APP_VARIANT === "development";
 
 export default {
   "name": IS_DEV ? "Word Check (Dev)" : "Word Check",
